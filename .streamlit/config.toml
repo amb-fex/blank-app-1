@@ -1,0 +1,7 @@
+[theme]
+primaryColor="#525d76"
+backgroundColor="#FFFFFF"  # ← Fondo blanco
+secondaryBackgroundColor="#F3F4F6"  # Fondo secundario más claro
+textColor="#000000"  # Texto negro
+font="sans serif"
+showSidebarNavigation = false
