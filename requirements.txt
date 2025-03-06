@@ -2,3 +2,4 @@ streamlit
 vanna[chromadb,openai,postgres]
 sqlalchemy
 streamlit-elements==0.1.*
+matplotlib
