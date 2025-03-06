@@ -25,8 +25,8 @@ st.markdown(
             margin:1rem;
             padding-top: 0rem;
             padding-bottom: 0rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
 
         
@@ -144,7 +144,7 @@ if not df_un_producto.empty:
         fig = px.imshow(
             df_un_producto.pivot(index="mes_nom", columns="any", values="total_descargas"),
             labels=dict(y="Mes", color="Descàrregues"),
-            title=f"Descàrregues de {producto_seleccionado} ({', '.join(map(str, anys_seleccionados))})",
+            title=f"Descàrregues de {producto_seleccionado}",
             color_continuous_scale=esquema_colores,
             width=800,
             height=600
