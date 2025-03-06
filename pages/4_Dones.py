@@ -29,8 +29,8 @@ st.markdown(
             margin:1rem;
             padding-top: 0rem;
             padding-bottom: 0rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
         h2 {
         text-align: center;  
@@ -81,7 +81,8 @@ plt.legend(bbox_to_anchor=(1, 1), loc=2)
 # Mostrar el gráfico en Streamlit
 st.pyplot(fig)
 
-
+st.header("")
+st.header("")
 
 # Calcular porcentajes de hombres (asumimos que el resto de descargas no son de mujeres)
 df_donas["porcentaje_descargas_otros"] = 100 - df_donas["porcentaje_descargas_mujer"]
