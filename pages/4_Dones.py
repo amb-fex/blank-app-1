@@ -51,7 +51,7 @@ engine = create_engine(f"postgresql://postgres.spdwbcfeoefxnlfdhlgi:chatbot2025@
 
 st.header("Descargues de dones per Ámbito")
 
-querry_donas = "SELECT u.nomambito, COUNT(d.id) AS total_descargas_mujer, (COUNT(d.id) * 100.0 / NULLIF(td.total_descargas, 0)) AS porcentaje_descargas_mujer FROM public.descargas d JOIN public.usuarios u ON d.usuario = u.usuario JOIN (SELECT u.nomambito, COUNT(d.id) AS total_descargas FROM public.descargas d JOIN public.usuarios u ON d.usuario = u.usuario WHERE u.genero NOT IN ('No respondido', 'No se recoge') GROUP BY u.nomambito) td ON u.nomambito = td.nomambito WHERE u.genero = 'Mujer' GROUP BY u.nomambito, td.total_descargas ORDER BY total_descargas_mujer ASC;"
+querry_donas = "SELECT u.nomambito, COUNT(d.id) AS total_descargas_mujer, (COUNT(d.id) * 100.0 / NULLIF(td.total_descargas, 0)) AS porcentaje_descargas_mujer FROM public.descargas d JOIN public.usuarios u ON d.usuario = u.usuario JOIN (SELECT u.nomambito, COUNT(d.id) AS total_descargas FROM public.descargas d JOIN public.usuarios u ON d.usuario = u.usuario GROUP BY u.nomambito) td ON u.nomambito = td.nomambito WHERE u.genero = 'Mujer' GROUP BY u.nomambito, td.total_descargas ORDER BY total_descargas_mujer ASC;"
 
 df_donas = run_query(querry_donas)
 
