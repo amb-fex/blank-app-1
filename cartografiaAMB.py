@@ -136,7 +136,7 @@ st.title("Anàlisi de Dades Geoportal Cartografia AMB")
 #col4.title("Anàlisi de Dades Geoportal Cartografia AMB")
 # Mostrar la imagen
 #col5.image("Imagenes/Portal.png")
-cola, colb, colc = st.columns([1, 3, 2]) 
+cola, colb, colc = st.columns([1, 4, 3]) 
 with colc:
     st.image("Imagenes/Portal.png")
 with cola:
@@ -160,7 +160,8 @@ with colb:
 #col1.metric("Descàrregues aquest mes", f"{descargas_actuales}", f"{delta_descargas} que el mes passat ")
 #col2.metric("Descàrregues totals", f"{descargas_totales}")
 #col3.metric("Usuaris", f"{usuarios_totales}totales", f"{nuevos_usuarios} nous aquest mes")
-
+st.write("")
+st.write("")
 st.write("")  # Esto agrega un espacio vacío
 st.subheader("Descarrègues de Mapa topogràfic metropolitá 1:1000")
 
