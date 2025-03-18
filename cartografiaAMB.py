@@ -136,22 +136,20 @@ st.title("Anàlisi de Dades Geoportal Cartografia AMB")
 #col4.title("Anàlisi de Dades Geoportal Cartografia AMB")
 # Mostrar la imagen
 #col5.image("Imagenes/Portal.png")
-cola, colb, colc = st.columns([1, 4, 3]) 
+cola, colb, colc = st.columns([1, 3, 2])  # Ajusta los tamaños relativos de las columnas
+
 with colc:
-    st.image("Imagenes/Portal.png")
+    st.image("Imagenes/Portal.png", width=250)  # Fija el ancho de la imagen
+
 with cola:
     st.metric("Descàrregues aquest mes", f"{descargas_actuales}", f"{delta_descargas} que el mes passat ")
-    st.write("") 
-    st.write("") 
-    st.write("")
     st.metric("Descàrregues totals", f"{descargas_totales}")
-    st.write("") 
-    st.write("") 
-    st.write("")
-    st.metric("Usuaris", f"{usuarios_totales} totales", f"{nuevos_usuarios} nous aquest mes")
+    st.metric("Usuaris", f"{usuarios_totales} totals", f"{nuevos_usuarios} nous aquest mes")
+
 with colb:
-    st.map(df_clicks, size=10, color="#ff0000")  # Rojo para resaltar los puntos de click
-    st.subheader("clicks aquest mes")
+    st.map(df_clicks, size=10, color="#ff0000", width=600, height=400)  # Tamaño fijo del mapa
+    st.subheader("Clicks aquest mes")
+
 
 #st.subheader("Descarrègues de tots els productes")
 #Metricas de contador de descaras y de usuarios
