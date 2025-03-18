@@ -239,7 +239,7 @@ else:
 
 
 # Configuración de la aplicación Streamlit
-st.subheading("Comparativa de Descàrregues per producte")
+st.subheader("Comparativa de descàrregues per producte")
 
 # Consulta SQL para obtener la lista de productos
 query_productos = "SELECT DISTINCT nomproducte FROM public.descargas;"
