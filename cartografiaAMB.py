@@ -122,7 +122,7 @@ st.title("Anàlisi de Dades Geoportal Cartografia AMB")
 #col4.title("Anàlisi de Dades Geoportal Cartografia AMB")
 # Mostrar la imagen
 #col5.image("Imagenes/Portal.png")
-cola, colb, colb = st.columns([1, 2, 1]) 
+cola, colb, colc = st.columns([1, 2, 1]) 
 with colb:
     st.image("Imagenes/Portal.png")
 
