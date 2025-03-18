@@ -125,8 +125,10 @@ st.title("Anàlisi de Dades Geoportal Cartografia AMB")
 cola, colb, colc = st.columns([1, 2, 1]) 
 with colb:
     st.image("Imagenes/Portal.png")
-
-
+with cola:
+    st.metric("Descàrregues aquest mes", f"{descargas_actuales}", f"{delta_descargas} que el mes passat ")
+    st.metric("Descàrregues totals", f"{descargas_totales}")
+    st.metric("Usuaris", f"{usuarios_totales}totales", f"{nuevos_usuarios} nous aquest mes")
 st.write("")  # Esto agrega un espacio vacío
 
 #st.subheader("Descarrègues de tots els productes")
