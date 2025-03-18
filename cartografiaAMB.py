@@ -41,6 +41,12 @@ st.markdown(
         h1 {
             text-align: center;  
         }
+         h3 {
+            text-align: center;  
+        }
+         h5 {
+            text-align: center;  
+        }
     </style>
     """, unsafe_allow_html=True,
 )
