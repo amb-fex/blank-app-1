@@ -144,7 +144,7 @@ with cola:
 st.write("")  # Esto agrega un espacio vacío
 with colb:
     st.map(df_clicks, size=10, color="#ff0000")  # Rojo para resaltar los puntos de click
-    st.metric("clicks aquest mes")
+    st.write("clicks aquest mes")
 
 #st.subheader("Descarrègues de tots els productes")
 #Metricas de contador de descaras y de usuarios
