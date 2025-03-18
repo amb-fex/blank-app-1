@@ -116,13 +116,26 @@ descargas_totales= df_descargas['total_descargas_historicas'][0]
 # Calcular delta de descargas
 delta_descargas = descargas_actuales - descargas_pasadas
 
+# Función para obtener datos de clicks desde PostgreSQL
+click_data=
+ """
+SELECT lat, lon
+FROM public.click
+WHERE lat IS NOT NULL AND lon IS NOT NULL;
+"""
+    
+# Obtener datos
+df_clicks = run_query(click_data)
+
+
+
 st.logo("Imagenes/amb.png")
 st.title("Anàlisi de Dades Geoportal Cartografia AMB")
 #col4, col5 = st.columns ([5,3])
 #col4.title("Anàlisi de Dades Geoportal Cartografia AMB")
 # Mostrar la imagen
 #col5.image("Imagenes/Portal.png")
-cola, colb, colc = st.columns([1, 2, 1]) 
+cola, colb, colc = st.columns([1, 2, 2]) 
 with colb:
     st.image("Imagenes/Portal.png")
 with cola:
@@ -134,6 +147,8 @@ with cola:
     st.write("") 
     st.metric("Usuaris", f"{usuarios_totales} totales", f"{nuevos_usuarios} nous aquest mes")
 st.write("")  # Esto agrega un espacio vacío
+with colc:
+    st.map(df_clicks, size=10, color="#ff0000")  # Rojo para resaltar los puntos de click
 
 #st.subheader("Descarrègues de tots els productes")
 #Metricas de contador de descaras y de usuarios
