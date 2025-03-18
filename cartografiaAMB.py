@@ -41,7 +41,7 @@ st.markdown(
         h1 {
             text-align: center;  
         }
-         h3 {
+         h4 {
             text-align: center;  
         }
          h5 {
@@ -139,7 +139,7 @@ st.title("Anàlisi de Dades Geoportal Cartografia AMB")
 cola, colb, colc = st.columns([1, 2, 2])  # Ajusta los tamaños relativos de las columnas
 
 with colc:
-    st.image("Imagenes/Portal.png", width=600)  # Fija el ancho de la imagen
+    st.image("Imagenes/Portal.png", width=500)  # Fija el ancho de la imagen
 
 with cola:
     st.metric("Descàrregues aquest mes", f"{descargas_actuales}", f"{delta_descargas} que el mes passat ")
