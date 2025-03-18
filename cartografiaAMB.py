@@ -141,8 +141,11 @@ cola, colb = st.columns([2, 3])  # Ajusta los tamaños relativos de las columnas
 #with colc:
    # st.image("Imagenes/Portal.png", width=500)  # Fija el ancho de la imagen
 
+with st.sidebar:
+    st.image("Imagenes/Portal.png", width=250)  # Ancho fijo para evitar cambios bruscos
+
 with cola:
-    st.image("Imagenes/Portal.png", width=500)  # Fija el ancho de la imagen
+    #st.image("Imagenes/Portal.png", width=500)  # Fija el ancho de la imagen
     st.metric("Descàrregues aquest mes", f"{descargas_actuales}", f"{delta_descargas} que el mes passat ")
     st.metric("Descàrregues totals", f"{descargas_totales}")
     st.metric("Usuaris", f"{usuarios_totales} totals", f"{nuevos_usuarios} nous aquest mes")
