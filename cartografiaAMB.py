@@ -136,7 +136,7 @@ st.title("Anàlisi de Dades Geoportal Cartografia AMB")
 #col4.title("Anàlisi de Dades Geoportal Cartografia AMB")
 # Mostrar la imagen
 #col5.image("Imagenes/Portal.png")
-cola, colb = st.columns([1, 3])  # Ajusta los tamaños relativos de las columnas
+cola, colb = st.columns([2, 3])  # Ajusta los tamaños relativos de las columnas
 
 #with colc:
    # st.image("Imagenes/Portal.png", width=500)  # Fija el ancho de la imagen
