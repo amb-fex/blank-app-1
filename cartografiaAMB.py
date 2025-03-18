@@ -131,7 +131,7 @@ st.title("Anàlisi de Dades Geoportal Cartografia AMB")
 # Mostrar la imagen
 #col5.image("Imagenes/Portal.png")
 cola, colb, colc = st.columns([1, 3, 3]) 
-with colb:
+with colc:
     st.image("Imagenes/Portal.png")
 with cola:
     st.metric("Descàrregues aquest mes", f"{descargas_actuales}", f"{delta_descargas} que el mes passat ")
@@ -142,8 +142,9 @@ with cola:
     st.write("") 
     st.metric("Usuaris", f"{usuarios_totales} totales", f"{nuevos_usuarios} nous aquest mes")
 st.write("")  # Esto agrega un espacio vacío
-with colc:
+with colb:
     st.map(df_clicks, size=10, color="#ff0000")  # Rojo para resaltar los puntos de click
+    st.metric("clicks aquest mes")
 
 #st.subheader("Descarrègues de tots els productes")
 #Metricas de contador de descaras y de usuarios
