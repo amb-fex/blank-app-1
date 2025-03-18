@@ -117,15 +117,16 @@ descargas_totales= df_descargas['total_descargas_historicas'][0]
 delta_descargas = descargas_actuales - descargas_pasadas
 
 st.logo("Imagenes/amb.png")
-st.title("")
-col4, col5 = st.columns ([5,3])
-col4.title("Anàlisi de Dades Geoportal Cartografia AMB")
+st.title("Anàlisi de Dades Geoportal Cartografia AMB")
+#col4, col5 = st.columns ([5,3])
+#col4.title("Anàlisi de Dades Geoportal Cartografia AMB")
 # Mostrar la imagen
-col5.image("Imagenes/Portal.png")
+#col5.image("Imagenes/Portal.png")
+st.image("Imagenes/Portal.png")
 
 st.write("")  # Esto agrega un espacio vacío
 
-st.subheader("Descarrègues de tots els productes")
+#st.subheader("Descarrègues de tots els productes")
 #Metricas de contador de descaras y de usuarios
 col1, col2, col3= st.columns(3)
 # Métrica principal
