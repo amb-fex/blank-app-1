@@ -327,7 +327,7 @@ if not df_top5.empty:
             gridcolor="rgba(200, 200, 200, 0.5)"  # Color de la cuadrícula
             ),
             legend=dict(
-            x=1.02,  # Mover la leyenda fuera del gráfico
+            #x=1.02,  # Mover la leyenda fuera del gráfico
             y=1,  # Posición vertical de la leyenda
             bordercolor="black",  # Borde de la leyenda
             borderwidth=1  # Grosor del borde
