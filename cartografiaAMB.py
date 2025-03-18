@@ -148,7 +148,9 @@ with cola:
     #st.image("Imagenes/Portal.png", width=500)  # Fija el ancho de la imagen
     st.metric("Descàrregues aquest mes", f"{descargas_actuales}", f"{delta_descargas} que el mes passat ")
     st.write("")
+    st.write("")
     st.metric("Descàrregues totals", f"{descargas_totales}")
+    st.write("")
     st.write("")
     st.metric("Usuaris", f"{usuarios_totales} totals", f"{nuevos_usuarios} nous aquest mes")
 
