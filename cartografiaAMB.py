@@ -127,17 +127,21 @@ with colb:
     st.image("Imagenes/Portal.png")
 with cola:
     st.metric("Descàrregues aquest mes", f"{descargas_actuales}", f"{delta_descargas} que el mes passat ")
+    st.write("") 
+    st.write("") 
     st.metric("Descàrregues totals", f"{descargas_totales}")
-    st.metric("Usuaris", f"{usuarios_totales}totales", f"{nuevos_usuarios} nous aquest mes")
+    st.write("") 
+    st.write("") 
+    st.metric("Usuaris", f"{usuarios_totales} totales", f"{nuevos_usuarios} nous aquest mes")
 st.write("")  # Esto agrega un espacio vacío
 
 #st.subheader("Descarrègues de tots els productes")
 #Metricas de contador de descaras y de usuarios
-col1, col2, col3= st.columns(3)
+#col1, col2, col3= st.columns(3)
 # Métrica principal
-col1.metric("Descàrregues aquest mes", f"{descargas_actuales}", f"{delta_descargas} que el mes passat ")
-col2.metric("Descàrregues totals", f"{descargas_totales}")
-col3.metric("Usuaris", f"{usuarios_totales}totales", f"{nuevos_usuarios} nous aquest mes")
+#col1.metric("Descàrregues aquest mes", f"{descargas_actuales}", f"{delta_descargas} que el mes passat ")
+#col2.metric("Descàrregues totals", f"{descargas_totales}")
+#col3.metric("Usuaris", f"{usuarios_totales}totales", f"{nuevos_usuarios} nous aquest mes")
 
 st.write("")  # Esto agrega un espacio vacío
 st.subheader("Descarrègues de Mapa topogràfic metropolitá 1:1000")
