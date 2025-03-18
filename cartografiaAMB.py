@@ -117,12 +117,7 @@ descargas_totales= df_descargas['total_descargas_historicas'][0]
 delta_descargas = descargas_actuales - descargas_pasadas
 
 # Función para obtener datos de clicks desde PostgreSQL
-click_data=
- """
-SELECT lat, lon
-FROM public.click
-WHERE lat IS NOT NULL AND lon IS NOT NULL;
-"""
+click_data= """SELECT lat, lon FROM public.click WHERE lat IS NOT NULL AND lon IS NOT NULL;"""
     
 # Obtener datos
 df_clicks = run_query(click_data)
