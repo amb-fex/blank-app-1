@@ -136,12 +136,13 @@ st.title("Anàlisi de Dades Geoportal Cartografia AMB")
 #col4.title("Anàlisi de Dades Geoportal Cartografia AMB")
 # Mostrar la imagen
 #col5.image("Imagenes/Portal.png")
-cola, colb, colc = st.columns([1, 2, 2])  # Ajusta los tamaños relativos de las columnas
+cola, colb = st.columns([1, 3])  # Ajusta los tamaños relativos de las columnas
 
-with colc:
-    st.image("Imagenes/Portal.png", width=500)  # Fija el ancho de la imagen
+#with colc:
+   # st.image("Imagenes/Portal.png", width=500)  # Fija el ancho de la imagen
 
 with cola:
+    st.image("Imagenes/Portal.png", width=500)  # Fija el ancho de la imagen
     st.metric("Descàrregues aquest mes", f"{descargas_actuales}", f"{delta_descargas} que el mes passat ")
     st.metric("Descàrregues totals", f"{descargas_totales}")
     st.metric("Usuaris", f"{usuarios_totales} totals", f"{nuevos_usuarios} nous aquest mes")
