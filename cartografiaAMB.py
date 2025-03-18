@@ -147,7 +147,7 @@ with cola:
     st.metric("Usuaris", f"{usuarios_totales} totals", f"{nuevos_usuarios} nous aquest mes")
 
 with colb:
-    st.map(df_clicks, size=10, color="#ff0000", width=600, height=400)  # Tamaño fijo del mapa
+    st.map(df_clicks)  # Tamaño fijo del mapa
     st.markdown("Clicks aquest mes")
 
 
