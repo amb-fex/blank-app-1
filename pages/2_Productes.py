@@ -11,7 +11,7 @@ st.markdown(
     """
     <style>
         section[data-testid="stSidebar"] {
-            width: 100px !important; # Set the width to your desired value
+            width: 100px !important; 
             background-color: rgba(255, 255, 255, 0.0);  /* Transparent background */
         }
     
@@ -160,13 +160,16 @@ else:
     with col1:
         st.warning(f"No hi ha dades disponibles per mostrar el mapa de calor per al producte {producto_seleccionado}.")
 
+# Crear dos columnas nuevas columnas
+col3, col4 = st.columns([3, 1])  # La primera columna es más ancha que la segunda
+
 # Ahora hago el gráfico que me deja seleccionar más de un producto para la comparación
-with col1:
+with col3:
   #  st.markdown('Mapa de calor de descàrregues per a més de un producte')
 
-    querry_productos_mes_a_mes = "SELECT DATE_TRUNC('month', fechadescarga) AS mes, nomproducte, COUNT(*) AS total_descargas FROM public.descargas GROUP BY mes, nomproducte ORDER BY mes, nomproducte;"
+    query_productos_mes_a_mes = "SELECT DATE_TRUNC('month', fechadescarga) AS mes, nomproducte, COUNT(*) AS total_descargas FROM public.descargas GROUP BY mes, nomproducte ORDER BY mes, nomproducte;"
 
-    df_descargas = run_query(querry_productos_mes_a_mes)
+    df_descargas = run_query(query_productos_mes_a_mes)
 
     with st.container():  # Full-width container
             productos_seleccionados = st.multiselect(
@@ -186,10 +189,7 @@ if not df_descargas.empty:
     
     
     # Controles para seleccionar productos y meses
-    with col2:
-        st.header("")
-        st.markdown("")
-        st.markdown("")
+    with col4:
         st.markdown("Controles per comparar més de un producte")
         
         meses_seleccionados = st.multiselect(
@@ -227,14 +227,120 @@ if not df_descargas.empty:
         )
         
         # Mostrar el gráfico en la primera columna
-        with col1:
+        with col3:
             st.plotly_chart(fig, use_container_width=True)
         
     else:
-        with col1:
+        with col3:
             st.warning("Selecciona almenys un producte i un mes per mostrar el mapa de calor.")
 else:
-    with col1:
+    with col3:
         st.warning("No hi ha dades disponibles per mostrar el mapa de calor.")
 
 
+# Configuración de la aplicación Streamlit
+st.header("Comparativa de Descàrregues per producte")
+
+# Consulta SQL para obtener la lista de productos
+query_productos = "SELECT DISTINCT nomproducte FROM public.descargas;"
+df_productos = run_query(query_productos)
+productos = df_productos["nomproducte"].tolist()
+
+query_top5 = """
+ SELECT 
+        DATE_TRUNC('month', fechadescarga) AS fecha, 
+        nomproducte, 
+        COUNT(*) AS total_descargas 
+    FROM public.descargas 
+    GROUP BY fecha, nomproducte 
+    ORDER BY fecha;
+"""
+df_top5 = run_query(query_top5)
+col5,col6 = st.columns([3,1])
+
+if not df_top5.empty:
+    # Convertir la columna 'mes' a formato de fecha
+    # Extraer el año y el mes de la columna 'mes'
+    df_top5["fecha"] = pd.to_datetime(df_top5["fecha"], errors="coerce")
+    df_top5["any"] = df_top5["fecha"].dt.year
+    df_top5["mes_num"] = df_top5["fecha"].dt.month
+
+    # Crear un diccionario para mapear los números de mes a nombres completos
+    mesos = {
+            1: "Gener", 2: "Febrer", 3: "Març", 4: "Abril", 5: "Maig", 6: "Juny",
+            7: "Juliol", 8: "Agost", 9: "Setembre", 10: "Octubre", 11: "Novembre", 12: "Desembre"
+        }
+    df_top5["mes_nom"] = df_top5["mes_num"].map(mesos)
+
+    with col6:
+        # Selector de años
+        años_disponibles = df_top5["any"].unique()
+        años_seleccionados = st.multiselect(
+        "Selecciona els anys a mostrar",
+        options=años_disponibles,
+        default=años_disponibles  # Todos los años por defecto
+        )
+
+# Selector de productos
+        productos_disponibles = df_top5["nomproducte"].unique()
+        productos_seleccionados = st.multiselect(
+        "Selecciona els productes a mostrar",
+        options=productos_disponibles,
+        default= productos[:5],  
+        # Todos los años por defecto
+        )
+    # Filtrar el DataFrame por años y meses seleccionados
+    df_filtrado = df_top5[
+        (df_top5["any"].isin(años_seleccionados)) & 
+        (df_top5["nomproducte"].isin(productos_seleccionados))
+    ]
+    with col5:
+        # Crear el gráfico de líneas con Plotly
+        fig = px.line(
+            df_filtrado,
+            x="fecha",
+            y="total_descargas",
+            color="nomproducte",
+            labels={"mes": "mes_nom", "total_descargas": "Descàrregues", "nomproducte": "Producte"},
+            markers=True,
+            line_dash="nomproducte",  # Estilo de línea diferente para cada producto
+            color_discrete_sequence=px.colors.qualitative.Plotly  # Paleta de colores personalizada
+            )
+
+        # Personalizar el gráfico
+        fig.update_layout(
+            xaxis_title="Mes",
+            yaxis_title="Descàrregues",
+            legend_title="Producte",
+            width=1000,
+            height=600,
+            plot_bgcolor="rgba(240, 240, 240, 0.9)",  # Fondo del gráfico más claro
+            paper_bgcolor="rgba(255, 255, 255, 0.9)",  # Fondo del área exterior más claro
+            font=dict(family="Arial", size=12, color="black"),  # Fuente más profesional
+            xaxis=dict(
+                showgrid=True,  # Mostrar cuadrícula en el eje X
+                gridcolor="rgba(200, 200, 200, 0.5)",  # Color de la cuadrícula
+                tickformat="%b %Y"  # Formato de fecha: Mes Año
+            ),
+            yaxis=dict(
+            showgrid=True,  # Mostrar cuadrícula en el eje Y
+            gridcolor="rgba(200, 200, 200, 0.5)"  # Color de la cuadrícula
+            ),
+            legend=dict(
+            x=1.02,  # Mover la leyenda fuera del gráfico
+            y=1,  # Posición vertical de la leyenda
+            bordercolor="black",  # Borde de la leyenda
+            borderwidth=1  # Grosor del borde
+            )
+            )
+
+            # Personalizar las líneas y marcadores
+        for trace in fig.data:
+            trace.update(
+            mode="lines",  # Mostrar líneas y marcadores
+            marker=dict(size=8, line=dict(width=1, color="black")),  # Marcadores más grandes con borde
+            line=dict(width=2)  # Líneas más gruesas
+            )
+
+        # Mostrar el gráfico en Streamlit
+        st.plotly_chart(fig)

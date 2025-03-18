@@ -19,7 +19,9 @@ from Chatbot.vanna_calls import (
     generate_summary_cached
 )
 
-
+st.set_page_config(
+    layout="wide",
+)
 st.markdown(
     """
         <style>
@@ -30,11 +32,11 @@ st.markdown(
                 }
 
                .block-container {
-                    padding-top: 0rem;
-                    padding-bottom: 0rem;
-                    padding-left: 0rem;
-                    padding-right: 0rem;
-                }
+                     padding-top: 0rem;
+                     padding-bottom: 0rem;
+            #         padding-left: 0rem;
+            #         padding-right: 0rem;
+                 }
         
         </style>
         """, unsafe_allow_html=True,
