@@ -295,6 +295,8 @@ if not df_top5.empty:
         (df_top5["nomproducte"].isin(productos_seleccionados))
     ]
     with col5:
+     
+        
         # Crear el gráfico de líneas con Plotly
         fig = px.line(
             df_filtrado,
@@ -305,8 +307,8 @@ if not df_top5.empty:
             markers=True,
             line_dash="nomproducte",  # Estilo de línea diferente para cada producto
             color_discrete_sequence=px.colors.qualitative.Plotly  # Paleta de colores personalizada
-            )
-
+        )
+        
         # Personalizar el gráfico
         fig.update_layout(
             xaxis_title="Mes",
@@ -323,16 +325,20 @@ if not df_top5.empty:
                 tickformat="%b %Y"  # Formato de fecha: Mes Año
             ),
             yaxis=dict(
-            showgrid=True,  # Mostrar cuadrícula en el eje Y
-            gridcolor="rgba(200, 200, 200, 0.5)"  # Color de la cuadrícula
+                showgrid=True,  # Mostrar cuadrícula en el eje Y
+                gridcolor="rgba(200, 200, 200, 0.5)"  # Color de la cuadrícula
             ),
             legend=dict(
-            #x=1.02,  # Mover la leyenda fuera del gráfico
-            y=1,  # Posición vertical de la leyenda
-            bordercolor="black",  # Borde de la leyenda
-            borderwidth=1  # Grosor del borde
+                x=0.99,  # Posición horizontal de la leyenda (dentro del gráfico)
+                y=0.99,  # Posición vertical de la leyenda (parte superior derecha)
+                xanchor="right",  # Anclaje de la leyenda a la derecha
+                yanchor="top",  # Anclaje de la leyenda a la parte superior
+                bgcolor="rgba(255, 255, 255, 0.7)",  # Fondo semi-transparente de la leyenda
+                bordercolor="black",  # Borde de la leyenda
+                borderwidth=1  # Grosor del borde
             )
-            )
+        )
+
 
             # Personalizar las líneas y marcadores
         for trace in fig.data:
