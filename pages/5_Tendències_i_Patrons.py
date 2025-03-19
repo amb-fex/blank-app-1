@@ -213,5 +213,50 @@ if not df.empty:
 else:
     st.warning("No hi ha dades disponibles per mostrar el gràfic.")
 
+query_idioma = """
+SELECT d.idproducto, d.nomproducte, u.ididioma, f.geometria
+FROM descargas d
+JOIN usuarios u ON d.usuario = u.usuario
+JOIN fulls f ON d.fulls = f.idfull
+"""
+df_idioma= run_querry(query_idioma)
+
+# Selección de idioma
+idiomas_disponibles = df_idioma["ididioma"].unique()
+idioma_seleccionado = st.selectbox("Selecciona un idioma:", idiomas_disponibles)
+
+# Filtrar datos por idioma seleccionado
+df_filtrado = df_idioma[df_idioma["ididioma"] == idioma_seleccionado]
+
+# Crear mapa
+st.subheader(f"🗺️ Mapa de descargas para el idioma: {idioma_seleccionado}")
+m = folium.Map(location=[41.3879, 2.16992], zoom_start=10)  # Centrado en Barcelona
+
+# Agregar puntos de descargas al mapa
+for _, row in df_filtrado.iterrows():
+    folium.Marker(
+        location=[row["geometria"].centroid.y, row["geometria"].centroid.x],
+        popup=f"{row['nomproducte']}",
+        icon=folium.Icon(color="blue", icon="cloud")
+    ).add_to(m)
+
+# Mostrar mapa en Streamlit
+folium_static(m)
+
+# Mostrar tabla de datos
+st.subheader("📊 Datos de descargas")
+st.dataframe(df_filtrado)
+
+
+
+
+
+
+
+
+
+
+
+
 with st.sidebar:
     st.image("Imagenes/Portal.png")  
