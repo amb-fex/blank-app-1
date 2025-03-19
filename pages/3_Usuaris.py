@@ -14,11 +14,7 @@ st.markdown(
             width: 100px !important;
             background-color: rgba(255, 255, 255, 0.0);
         }
-        .block-container {
-            margin:1rem;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
+      
         h2 {
             text-align: center;  
         }
