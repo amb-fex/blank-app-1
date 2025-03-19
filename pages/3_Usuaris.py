@@ -70,8 +70,7 @@ df_perfil = run_query(query_perfil)
 fig3 = px.pie(df_perfil, names='nomperfil', values='total_usuarios', title="Distribución de Usuarios por Perfil Profesional", color_discrete_sequence=colors)
 fig3.update_traces(textfont_color='white')
 
-
-    query_perfil = """
+query_perfil = """
     WITH registros_mensuales AS (
         SELECT
             DATE_TRUNC('month', fechaalta) AS fecha,
