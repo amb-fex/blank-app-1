@@ -34,10 +34,10 @@ engine = create_engine("postgresql://postgres.spdwbcfeoefxnlfdhlgi:chatbot2025@a
 def run_query(query):
     return pd.read_sql(query, con=engine)
 
-  # Selección de paleta de colores para los gráficos de torta
-    palettes = list(sns.color_palette().as_hex())
-    selected_palette = st.sidebar.selectbox("Selecciona una paleta de colores", ["viridis", "dark", "magma", "pastel", "icefire", "rocket"])
-    colors = sns.color_palette(selected_palette).as_hex()
+# Selección de paleta de colores para los gráficos de torta
+palettes = list(sns.color_palette().as_hex())
+selected_palette = st.sidebar.selectbox("Selecciona una paleta de colores", ["viridis", "dark", "magma", "pastel", "icefire", "rocket"])
+colors = sns.color_palette(selected_palette).as_hex()
 
 # Query para usuarios por ámbito
 query_ambito = """
