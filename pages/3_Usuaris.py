@@ -105,7 +105,12 @@ with col1:
 with col2:
     st.plotly_chart(fig3, use_container_width=True)
   
+col3, col4 = st.columns(1, 1])
+with col3:
+    st.plotly_chart(fig2, use_container_width=True)
+    
 
-st.plotly_chart(fig2, use_container_width=True)
+  
+
 
 
