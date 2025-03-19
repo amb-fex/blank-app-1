@@ -108,7 +108,8 @@ with col2:
 col3, col4 = st.columns([1, 1])
 with col3:
     st.plotly_chart(fig2, use_container_width=True)
-    
+with st.sidebar:
+    st.image("Imagenes/Portal.png")  
 
   
 
