@@ -142,7 +142,7 @@ cola, colb = st.columns([1, 4])  # Ajusta los tamaños relativos de las columnas
    # st.image("Imagenes/Portal.png", width=500)  # Fija el ancho de la imagen
 
 with st.sidebar:
-    st.image("Imagenes/Portal.png", width=250)  # Ancho fijo para evitar cambios bruscos
+    st.image("Imagenes/Portal.png")  # Ancho fijo para evitar cambios bruscos
 
 with cola:
     #st.image("Imagenes/Portal.png", width=500)  # Fija el ancho de la imagen
