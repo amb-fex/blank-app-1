@@ -213,7 +213,7 @@ def plot_bar_chart():
     
     return fig
 
-col3, col4 =st.columns(1,1)
+col3, col4 =st.columns(2)
 with col3:
     st.pyplot(fig)
 with col4:
