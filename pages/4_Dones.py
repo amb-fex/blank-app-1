@@ -185,8 +185,7 @@ for i, (descarga, ambito, color) in enumerate(zip(df_donas["porcentaje_descargas
 # Agregar leyenda
 plt.legend(bbox_to_anchor=(1, 1), loc=2)
 
-# Mostrar el gráfico en Streamlit
-st.pyplot(fig)
+
 
 st.header("")
 st.header("")
@@ -214,5 +213,8 @@ def plot_bar_chart():
     
     return fig
 
-# Mostrar el gráfico en Streamlit
-st.pyplot(plot_bar_chart())
+col3, col4 =st.columns(1,1)
+with col3:
+    st.pyplot(fig)
+with col4:
+    st.pyplot(plot_bar_chart())
