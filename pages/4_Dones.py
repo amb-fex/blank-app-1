@@ -218,3 +218,5 @@ with col3:
     st.pyplot(fig)
 with col4:
     st.pyplot(plot_bar_chart())
+with st.sidebar:
+    st.image("Imagenes/Portal.png")  
