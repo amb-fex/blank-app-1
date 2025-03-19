@@ -29,9 +29,9 @@ st.markdown(
              margin:1rem;
              padding-top: 0rem;
              padding-bottom: 0rem;
-        #     padding-left: 5rem;
-        #     padding-right: 5rem;
-        # }
+             padding-left: 5rem;
+             padding-right: 5rem;
+         }
 
         
         /* Modificar el tamaño de los checkboxes en el multiselect */
