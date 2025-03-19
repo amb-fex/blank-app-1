@@ -190,3 +190,6 @@ if my_question:
             "assistant", avatar=avatar_url
         )
         assistant_message_error.error("No he pogut generar SQL per a aquesta pregunta")
+
+with st.sidebar:
+    st.image("Imagenes/Portal.png")  
