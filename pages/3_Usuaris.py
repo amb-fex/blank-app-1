@@ -34,38 +34,6 @@ engine = create_engine("postgresql://postgres.spdwbcfeoefxnlfdhlgi:chatbot2025@a
 def run_query(query):
     return pd.read_sql(query, con=engine)
 
-# Selección de año para filtrar
-selected_year = st.selectbox("Selecciona un año", ["Todos"] + list(range(2014, 2026)))
-
-# Query para el acumulado de usuarios incluyendo años anteriores
-query_usuarios_mes = f"""
-    WITH registros_mensuales AS (
-        SELECT
-            DATE_TRUNC('month', fechaalta) AS fecha,
-            COUNT(*) AS total_registros
-        FROM public.usuarios
-        WHERE EXTRACT(YEAR FROM fechaalta) <= {selected_year if selected_year != 'Todos' else '9999'}
-        GROUP BY fecha
-    ),
-    acumulado_anterior AS (
-        SELECT
-            SUM(total_registros) AS usuarios_acumulados
-        FROM registros_mensuales
-        WHERE EXTRACT(YEAR FROM fecha) < {selected_year if selected_year != 'Todos' else '9999'}
-    )
-    SELECT
-        fecha,
-        SUM(total_registros) OVER (ORDER BY fecha) + COALESCE((SELECT usuarios_acumulados FROM acumulado_anterior), 0) AS acumulado_registros
-    FROM registros_mensuales
-    ORDER BY fecha;
-"""
-df_mes = run_query(query_usuarios_mes)
-
-# Gráfico del acumulado de usuarios registrados con eje temporal
-fig1 = px.line(df_mes, x='fecha', y='acumulado_registros', markers=True, title="Acumulado de Usuarios Nuevos a lo Largo del Tiempo")
-fig1.update_traces(fill='tozeroy', mode='lines+markers', marker=dict(symbol='diamond', size=10))
-st.plotly_chart(fig1, use_container_width=True)
-
 # Selección de paleta de colores para los gráficos de torta
 palettes = list(sns.color_palette().as_hex())
 selected_palette = st.selectbox("Selecciona una paleta de colores", ["viridis", "dark", "magma", "pastel", "icefire", "rocket"])
@@ -103,12 +71,6 @@ fig3 = px.pie(df_perfil, names='nomperfil', values='total_usuarios', title="Dist
 fig3.update_traces(textfont_color='white')
 
 
-col1, col2 = st.columns([5, 3])
-with col1:
-    st.plotly_chart(fig2, use_container_width=True)
-with col2:
-    st.plotly_chart(fig3, use_container_width=True)
-
     query_perfil = """
     WITH registros_mensuales AS (
         SELECT
@@ -141,6 +103,14 @@ fig4 = px.area(
 )
 
 
-# Mostrar la gráfica
-st.plotly_chart(fig4, use_container_width=True)
+col1, col2 = st.columns([5, 3])
+with col1:
+    st.plotly_chart(fig4, use_container_width=True)
+    
+with col2:
+    st.plotly_chart(fig3, use_container_width=True)
+
+
+st.plotly_chart(fig2, use_container_width=True)
+
 
