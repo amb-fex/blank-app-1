@@ -350,3 +350,5 @@ if not df_top5.empty:
 
         # Mostrar el gráfico en Streamlit
         st.plotly_chart(fig)
+with st.sidebar:
+    st.image("Imagenes/Portal.png")  
