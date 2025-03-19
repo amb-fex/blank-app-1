@@ -4,3 +4,6 @@ sqlalchemy
 streamlit-elements==0.1.*
 matplotlib
 seaborn
+geopandas 
+folium 
+streamlit_folium
