@@ -212,3 +212,6 @@ if not df.empty:
     st.pyplot(fig2)
 else:
     st.warning("No hi ha dades disponibles per mostrar el gràfic.")
+
+with st.sidebar:
+    st.image("Imagenes/Portal.png")  
